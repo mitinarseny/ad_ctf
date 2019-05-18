@@ -1,0 +1,26 @@
+version: '3.7'
+
+networks:
+  nw:
+
+services:
+  reverse_proxy:
+    build: ./reverse_proxy
+    restart: always
+    ports:
+      - 8080:8080
+      - 8081:8081
+    networks:
+    - nw
+
+  app1:
+    build: ./app1
+    restart: always
+    networks:
+      - nw
+
+  app2:
+    build: ./app2
+    restart: always
+    networks:
+      - nw
